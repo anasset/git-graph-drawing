@@ -1,0 +1,75 @@
+#!/bin/bash
+
+LEVEL_1='* G
+* I
+*   T
+|\  
+| * I
+* | N
+|/  
+* I
+* T
+* -'
+
+LEVEL_2='* G
+*   I
+|\  
+| * T
+* | B
+|/  
+*   R
+|\  
+| * A
+| * N
+* | C
+|/  
+* H
+* -'
+
+LEVEL_3='*   G
+|\  
+| * I
+* |   T
+|\ \  
+| * | C
+| * | H
+* | | E
+| |/  
+|/|   
+* | C
+* | K
+|/  
+*   O
+|\  
+| * U
+* | T
+|/  
+* B
+* -'
+
+if [[ $1 == '1' ]]; then
+  TARGET=$LEVEL_1
+elif [[ $1 == '2' ]]; then
+  TARGET=$LEVEL_2
+elif [[ $1 == '3' ]]; then
+  TARGET=$LEVEL_3
+else
+  TARGET=$LEVEL_1
+fi
+CURRENT=$(git log --graph --format=%s)
+
+if [[ "$TARGET" == "$CURRENT" ]]; then
+  echo "You did it!"
+  echo $'\n'
+  echo "$TARGET"
+  echo $'\n'
+else
+  echo "Target graph is:"
+  echo $'\n'
+  echo "$TARGET"
+  echo $'\n'
+  echo "Current graph is:"
+  echo $'\n'
+  echo "$CURRENT"
+  echo $'\n'
+fi
